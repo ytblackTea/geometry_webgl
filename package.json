@@ -1,0 +1,23 @@
+{
+  "name": "geometry_webgl",
+  "version": "1.0.0",
+  "description": "绘制3D几何图形，包括光照、阴影、倒影",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ytblackTea/geometry_webgl.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ytblackTea/geometry_webgl/issues"
+  },
+  "homepage": "https://github.com/ytblackTea/geometry_webgl#readme",
+  "dependencies": {
+    "gl-matrix": "^3.4.3"
+  }
+}
