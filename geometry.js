@@ -187,8 +187,8 @@ export const geometry = {
         let vectorArr = [
             -5, -1, -5, 0, 1, 0, 0, 0, 0.5,
             5, -1, -5, 0, 1, 0, 0, 0, 0.5,
-            5, -1, 1, 0, 1, 0, 0, 0, 0.5,
-            -5, -1, 1, 0, 1, 0, 0, 0, 0.5,
+            5, -1, 5, 0, 1, 0, 0, 0, 0.5,
+            -5, -1, 5, 0, 1, 0, 0, 0, 0.5,
         ]
 
         let indics = [
@@ -215,3 +215,58 @@ export const geometry = {
         return { vectorArr, indics }
     }
 }
+
+
+// // 顶点着色器
+// const vertexShader = `
+// attribute vec3 a_position;
+// attribute vec3 a_normal;
+// attribute vec3 a_color;
+
+// uniform mat4 u_matrix;
+
+// varying vec3 color;
+// varying vec3 normal;
+// varying vec3 v_position;
+
+// void main(){
+//     // 将位置和矩阵相乘
+//     gl_Position = u_matrix * vec4(a_position, 1);
+//     color = a_color;
+//     normal = a_normal;
+//     v_position = a_position;
+// }
+// `
+
+// // 片元着色器
+// const fragmentShader = `
+// precision mediump float;
+
+// varying vec3 color;
+// varying vec3 normal;
+// varying vec3 v_position;
+
+// uniform vec3 v_lightPos;
+
+// float PI = 3.141592654;
+// void main () {
+//     // 光强
+//     float intensity = 1.5;
+//     // 光的颜色
+//     vec3 lightColor = vec3(1,1,1);
+//     // 光的方向
+//     vec3 lightDir = normalize(vec3(1,-1,0));
+//     // 计算光照与法向量的角度 归一化
+//     float rad = acos(dot(normalize(normal),lightDir))/PI;
+//     // 归一化rad
+//     vec3 lic = rad*intensity*lightColor;
+//     // 光源到物体的距离
+//     float dist = distance(v_position,v_lightPos);
+
+//     gl_FragColor = vec4(dist/20.0,dist/20.0,dist/20.0,1);
+
+// }
+// `;
+
+//  // 计算点距离光源的位置，与framebuffer里面的数据进行对比
+//  distance(a_position,v_lightPos)  s_framebuffer[glPosition]
