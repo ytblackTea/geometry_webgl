@@ -111,7 +111,7 @@ export const geometry = {
             )
         }
 
-        console.log(indics, vectorArr)
+        // console.log(indics, vectorArr)
         return { indics, vectorArr }
     },
     cone: (center, angle, r, height) => {
@@ -179,7 +179,7 @@ export const geometry = {
             }
             curLen += 1
         }
-        console.log(vectorArr, indics, '椎体')
+        // console.log(vectorArr, indics, '椎体')
 
         return { vectorArr, indics }
     },

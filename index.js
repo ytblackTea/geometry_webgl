@@ -58,15 +58,17 @@ void main () {
     // 归一化rad
     vec3 lic = rad*intensity*lightColor;
     // 顶点到光源的距离
-    float dist = distance(position, l_lightPos) / 255.0;
+    float dist = distance(position, l_lightPos);
     // 取纹理的坐标
     vec3 uvz = (pos_index.xyz / pos_index.w) / 2.0 + 0.5; 
     vec4 originDist = texture2D(u_texture, uvz.xy);
-    if(uvz.z > unpackDepth(originDist)) {
+    // if(uvz.z > unpackDepth(originDist)) {
+    if(dist > originDist.x * 30.0) {
         gl_FragColor = vec4(lic * color * 0.7, 1);
     }else{
         gl_FragColor = vec4(lic * color, 1);
     }
+    gl_FragColor = originDist;
 }
 `;
 // 创建shader
@@ -138,7 +140,7 @@ gl.enableVertexAttribArray(normalLocation);
 
 var translation = [0, 5, 0];
 // 光源位置
-let lightPos = [0, 5, -0];
+let lightPos = [0, 5, 0];
 var rotation = [0, 1, 0];
 
 // 计算角度对应的弧度
@@ -148,7 +150,11 @@ function degToRad(d) {
 
 function bindTexture() {
     gl.bindTexture(gl.TEXTURE_2D, texture);
-
+    // 告诉WebGL如何从裁剪空间映射到像素空间
+    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+      // 清空画布和深度缓冲
+      gl.clearColor(1, 1, 1, 1);   // clear to white
+      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     // 设置参数，让我们可以绘制任何尺寸的图像
     // 
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
